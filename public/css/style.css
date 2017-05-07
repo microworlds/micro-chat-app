@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.wrapper {
+	background-size: #ccc;
+	width: 400px;
+	height: 300px;
+	border: 2px solid #aaa;
+	max-height: 400px;
+	overflow: scroll;
+}
+
+
+#input {
+	display: block;
+}
