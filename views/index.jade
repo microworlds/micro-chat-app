@@ -1,19 +1,34 @@
-extends layout
-
-block content
-	.section
-		.container
-			.columns
-				.column-is-3
-					p huhuu
-				.column
-					h1.title Welcome to Microworlds Chat
-						.box#box
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/css/bulma.css')
+		link(rel='stylesheet', href='/css/font-awesome.css') 
+		link(rel='stylesheet', href='/css/style.css')
+		script(src="js/socketio.js")
+		script(src="/js/jquery.js") 
+		script(src="/js/angular.js")
+		script(src="/js/index.js")
+	body
+		nav.main-nav
+			.left
+				a(href="http://www.microworlds.herokuapp.com") Microworlds Chat
+			.right
+				ul 
+					li: a(href="http://www.microworlds.herokuapp.com") Home
+					li: a(href="http://www.microworlds.herokuapp.com") About
+					li: a(href="http://www.microworlds.herokuapp.com") Contact
+		.wrap
+			.container
+				.columns
+					.column.is-3
+					.column
+						h1.title.has-text-centered Welcome to Microworlds Chat
+						.box#box.is-success
 						form#send 
-							input.input(type="text" placeholder="Enter message" id="input")
-							br
-							button.button
-								span.icon
-									icon.fa.fa-message
-				.column.is-3
-					p juhuh
+							p.control.has-addons
+								input.input.is-success.is-expanded(type="text" placeholder="Enter message" id="input")
+								button.button.is-success Send
+									span.icon
+										icon
+					.column.is-3

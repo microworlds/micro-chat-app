@@ -21,7 +21,7 @@ $(document).ready(function(){
 	});
 
 	socket.on('new-message', function(data){
-		box.append(data.msg + "<br>")
+		box.append("<div class='box'>" + data.msg + "</div>" + "<br>")
 	});
 
 
