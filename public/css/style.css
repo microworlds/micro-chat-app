@@ -38,6 +38,12 @@ a:hover {
 	border: 0.5px solid #23d160;
 }
 
+.stand {
+	box-shadow: 0 10px 60px -6px #777;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
 #input {
 	display: block;
 	border-top-left-radius: 0;

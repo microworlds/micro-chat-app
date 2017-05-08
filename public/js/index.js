@@ -21,7 +21,8 @@ $(document).ready(function(){
 	});
 
 	socket.on('new-message', function(data){
-		box.append("<div class='box'>" + data.msg + "</div>" + "<br>")
+		box.append("<div class='box'>" + data.msg + "</div>" + "<br>");
+		box.scrollTop(1000000);
 	});
 
 
