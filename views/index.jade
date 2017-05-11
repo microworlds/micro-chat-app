@@ -1,34 +1,41 @@
 doctype html
-html
+html(ng-app="app")
 	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
 		title= title
 		link(rel='stylesheet', href='/css/bulma.css')
-		link(rel='stylesheet', href='/css/font-awesome.css') 
+		link(rel='stylesheet', href='/css/font-awesome.css')
 		link(rel='stylesheet', href='/css/style.css')
-		script(src="js/socketio.js")
-		script(src="/js/jquery.js") 
-		script(src="/js/angular.js")
+
+	body(ng-controller="main")
+		.columns.chat-wrapper
+			.column.is-3.people-online
+				h1.title.has-text-centered {{users.length}} - Online
+				ul
+					li.people(ng-repeat="user in users track by $index")
+						p.person {{user}}
+						p.online
+			.column.is-9.chat-area
+				.holder
+					button.button#tog.is-primary Online users
+					.message-container(ng-repeat="message in messages track by $index")  
+						.chat-meta
+							img(src="/img/dogs.jpg")
+							.details
+								h1.title.name {{message.username}}
+								p.sent-message {{message.message}}
+								p.time {{time}}
+								p.sent-message 
+				form(ng-submit="sendMessage(msg)")
+					p.has-addons
+						input.input.is-expanded#send-text(placeholder="Enter message here" ng-model="msg")
+
+		script(src="/js/libs/socketio.js")
+		script(src="/js/libs/jquery.js")
+		script(src="/js/libs/angular.js")
+		script(src="/js/libs/bt-ford.js")
+		script(src="/js/app.js")
+		
 		script(src="/js/index.js")
-	body
-		nav.main-nav
-			.left
-				a(href="#") Microworlds Chat
-			.right
-				ul 
-					li: a(href="#") Home
-					li: a(href="#") About
-					li: a(href="#") Contact
-		.wrap
-			.container
-				.columns
-					.column.is-3
-					.column.stand
-						h1.title.has-text-centered Welcome to Microworlds Chat
-						.box#box.is-success
-						form#send 
-							p.control.has-addons
-								input.input.is-success.is-expanded(type="text" placeholder="Enter message" id="input")
-								button.button.is-success Send
-									span.icon
-										icon
-					.column.is-3
