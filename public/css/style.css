@@ -15,6 +15,64 @@ a:hover {
   transition: all .3s linear;
 }
 
+/* Land */
+.land {
+	width: 100vw;
+	height: 100vh;
+	background: url('/img/land.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+
+.error {
+	background: red;
+	width: 300px;
+	color: #fff;
+}
+
+.overlay {
+	background: rgba(0,0,0,0.4);
+	height: 100%;
+	width: 100%;
+}
+
+
+.overlay h1 {
+	color: #fff;
+}
+
+/* Reg user */
+#reg-user {
+	display: block;
+	margin: 0 auto;
+	width: 60vw;
+	padding: 0;
+	background: #2f3e42;
+	color: #ccc;
+	padding: 6px 15px 6px 35px;
+	transition: 1s all ease;
+	border-bottom: 2px solid #16a085;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	font-size: 2rem;
+}
+
+#reg-user:focus {
+	background: #1e3135;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Chat styles */
 .people-online {
 	background: #1d212c;
@@ -118,6 +176,8 @@ a:hover {
 #send-text:focus {
 	background: #1e3135;
 }
+
+
 
 
 #tog {

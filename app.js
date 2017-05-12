@@ -6,11 +6,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-var port = process.env.PORT || 3000;
-
-
-
-var server = http.createServer(app).listen(port);
+var server = http.createServer(app).listen(3000);
 var io = require('socket.io').listen(server);
 
 // view engine setup
@@ -24,37 +20,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', function(req, res){
-	res.render('index', {title: "Microworlds Chat"});
+	res.render('index', {title: "Socket Chat"});
 });
 
-var users = [];
+var usernames = [];
 io.sockets.on('connection', function(socket){
-	console.log("A user has connected");
+	console.log("User has connected");
 	
-	var username = "";
-	socket.on('request-users', function(){
-		socket.emit('users', {users: users});
+	socket.on('new-user', function(data){
+		console.log(data);
+		if (usernames.indexOf(data) != -1) {
+			return false;
+		}
+		socket.username = data;
+		usernames.push(socket.username);
+		updateUsernames();
 	});
 
-	socket.on('message', function(data){
-		io.emit('message', {username: username, message: data.message});
+	function updateUsernames(){
+		io.sockets.emit('usernames', usernames);
+	}
+
+
+	socket.on('send-message', function(data){
+		console.log(data);
+		io.sockets.emit('new-message', {msg : data, user : socket.username});
 	});
 
-	socket.on('add-user', function(data){
-		if (users.indexOf(data.username) == -1) {
-			io.emit('add-user', {username : data.username});
-			username = data.username;
-			users.push(data.username)
+	socket.on('disconnect', function(data){
+		if (!socket.username) {
+			return;
 		} else {
-			socket.emit('prompt-username', {message : "Username already exists"});
+			usernames.splice(usernames.indexOf(socket.username), 1);
+			updateUsernames();
 		}
 	});
 
-	socket.on('disconnect', function(){
-		console.log(username + " has disconnected");
-		users.splice(users.indexOf(username), 1);
-		io.emit('remove-user', {username : username});
-	});
-
-
 });
+

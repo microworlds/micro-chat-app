@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="app")
+html
 	head
 		meta(charset="utf-8")
 		meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -9,33 +9,47 @@ html(ng-app="app")
 		link(rel='stylesheet', href='/css/font-awesome.css')
 		link(rel='stylesheet', href='/css/style.css')
 
-	body(ng-controller="main")
+	body
+		.columns.sign
+			.column.land
+				.overlay
+					form#reg
+						br
+						br
+						br 
+						br
+						h1.title.has-text-centered Welcome to microworlds Chat
+						br
+						br
+						br
+						br
+						br
+						h1.subtitle.has-text-centered Enter username to join the chat
+						p.has-addons
+							p.subtitle.has-text-centered.error
+							input.input.is-expanded#reg-user(placeholder="Enter username")
 		.columns.chat-wrapper
 			.column.is-3.people-online
-				h1.title.has-text-centered {{users.length}} - Online
-				ul
-					li.people(ng-repeat="user in users track by $index")
-						p.person {{user}}
+				h1.title.has-text-centered Users Online
+				ul.list
+					//-li.people
+						p.person
 						p.online
 			.column.is-9.chat-area
 				.holder
 					button.button#tog.is-primary Online users
-					.message-container(ng-repeat="message in messages track by $index")  
+					//-.message-container 
 						.chat-meta
 							img(src="/img/dogs.jpg")
 							.details
-								h1.title.name {{message.username}}
-								p.sent-message {{message.message}}
-								p.time {{time}}
+								h1.title.name
 								p.sent-message 
-				form(ng-submit="sendMessage(msg)")
+								//-p.time {{time}}
+								p.sent-message 
+				form#send
 					p.has-addons
-						input.input.is-expanded#send-text(placeholder="Enter message here" ng-model="msg")
+						input.input.is-expanded#send-text(placeholder="Enter message here")
 
 		script(src="/js/libs/socketio.js")
 		script(src="/js/libs/jquery.js")
-		script(src="/js/libs/angular.js")
-		script(src="/js/libs/bt-ford.js")
-		script(src="/js/app.js")
-		
 		script(src="/js/index.js")
