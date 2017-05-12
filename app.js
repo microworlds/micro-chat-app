@@ -5,8 +5,9 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var app = express();
+var port = process.env.PORT || 3000;
 
-var server = http.createServer(app).listen(3000);
+var server = http.createServer(app).listen(port);
 var io = require('socket.io').listen(server);
 
 // view engine setup
