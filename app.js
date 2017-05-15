@@ -57,6 +57,10 @@ io.sockets.on('connection', function(socket){
 		}
 	});
 
+	socket.on('reg', function(data){
+		console.log(data);
+	});
+
 });
 
 

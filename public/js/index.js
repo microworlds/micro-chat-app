@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	console.log("I am loaded");
+	//console.log("I am loaded");
 	
 
 	$('.chat-wrapper').hide();
@@ -49,8 +49,10 @@ $(document).ready(function(){
 	});
 
 	socket.on('new-message', function(data){
-		console.log(data);
-		var time = new Date().toString();
+		//console.log(data);
+		var get = new Date().getTime();
+		
+		var time = moment().startOf('second').fromNow(get);
 
 		var item = [
 			
@@ -59,13 +61,10 @@ $(document).ready(function(){
 		];
 
 
-		console.log(item[0].user);
-
-
 		// Fix it
 		var fit = '';
 		for (var i = 0; i < item.length; i++) {
-			fit += "<div class='message-container'>" + "<div class='chat-meta'>" + "<img src='/img/dogs.jpg'>" + "<div class='details'>" + "<h1 class='title name'>"  + item[0].user + "</h1>" + "<p class='sent-message'>" + item[0].msg + "</p>" + "<p class='sent-message'>" + time + "</p>" + "</div>" + "</div>" + 
+			fit += "<div class='message-container'>" + "<div class='chat-meta'>" + "<img src='/img/dogs.jpg'>" + "<div class='details'>" + "<h1 class='title name'>"  + item[0].user + "</h1>" + "<p class='sent-message'>" + item[0].msg + "</p>" + "<p class='sent-message time'>" + time + "</p>" + "</div>" + "</div>" + 
 			"</div>";
 		}
 		

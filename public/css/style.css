@@ -40,6 +40,10 @@ a:hover {
 	color: #fff;
 }
 
+.time {
+	color: #62d3be;
+}
+
 /* Reg user */
 #reg-user {
 	display: block;
