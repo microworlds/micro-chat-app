@@ -1,6 +1,7 @@
 {
-  "name": "socket",
-  "version": "0.0.0",
+  "name": "microchatapp",
+  "describtion": "simple chatting application",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./app.js"

@@ -12,12 +12,13 @@ var app = express();
 var port = process.env.PORT || 89;
 
 // Create the server and pass it to the socket
-var server = http.createServer(app).listen(port);
+var server = http.createServer(app).listen(port, function(){
+	console.log("Server running on port " + port);
+});
 var io = require('socket.io').listen(server);
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
-console.log(__dirname);
 app.set('view engine', 'jade');
 
 // Register middlewares 
@@ -71,10 +72,5 @@ io.sockets.on('connection', function(socket){
 			updateUsernames();
 		}
 	});
-
-	//socket.on('reg', function(data){
-		//console.log(data);
-	//});
-
 });
 
