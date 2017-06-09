@@ -23,7 +23,7 @@ $(document).ready(function(){
 		socket.emit('new-user', regu.val());
 		$('.sign').hide();
 		$('.chat-wrapper').show();
-		
+
 	});
 
 	// Receive all active users array from the server
@@ -70,3 +70,10 @@ $(document).ready(function(){
 	});
 
 });
+
+
+console.log("Hello geeks, welcome to GDG 2017");
+
+console.log("I am blocking the last line from executing");
+
+console.log("I am the last block on the stack");
