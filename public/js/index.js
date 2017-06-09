@@ -1,32 +1,32 @@
 $(document).ready(function(){
-	//console.log("I am loaded");
+	console.log("I am loaded");
 	
-
+	// Hide chat wrapper and allow user sign in
 	$('.chat-wrapper').hide();
-	//$('.sign').hide();
 
-
+	// Toggle to see users online when on small screen
 	$('#tog').click(function(){
 		$('.people-online').slideToggle(300);
 	});
 
-
-
+	// Instantiate websocket to socket variable 
 	var socket = io.connect();
 
+	// Get the form and username variables
 	var reg = $('#reg');
 	var regu = $('#reg-user');
 
-	// Add user
+	// Add user to the chat
 	reg.submit(function(e){
 		e.preventDefault();
+		
 		socket.emit('new-user', regu.val());
-			$('.sign').hide();
-			$('.chat-wrapper').show();
-			//$('.error').html("Username has already been taken");
-		//regu.val() = "";
+		$('.sign').hide();
+		$('.chat-wrapper').show();
+		
 	});
 
+	// Receive all active users array from the server
 	socket.on('usernames', function(data){
 		var temp = '';
 		for (var i = 0; i < data.length; i++) {
@@ -35,43 +35,38 @@ $(document).ready(function(){
 		$('.list').html(temp);
 	});
 
-
-	// Start chat
+	// Get the chat area variables (send button, input value and container)
 	var send = $('#send');
 	var input = $('#send-text');
 	var box = $('.holder');
 
-
+	// Send (emit) message to the socket
 	send.submit(function(e){
 		e.preventDefault();
 		socket.emit('send-message', input.val());
 		input.val('');
 	});
 
+	// Receive broadcasted message from the socket
 	socket.on('new-message', function(data){
 		//console.log(data);
-		var get = new Date().getTime();
+		//var get = new Date().getTime();
 		
-		var time = moment().startOf('second').fromNow(get);
+		var time = moment().startOf('second').fromNow();
 
-		var item = [
-			
-			data
+		// Convert the response to an array for easy iteration
+		var item = [data];
 
-		];
-
-
-		// Fix it
+		// Iterate over all messages and render the view on the chat div
 		var fit = '';
 		for (var i = 0; i < item.length; i++) {
 			fit += "<div class='message-container'>" + "<div class='chat-meta'>" + "<img src='/img/dogs.jpg'>" + "<div class='details'>" + "<h1 class='title name'>"  + item[0].user + "</h1>" + "<p class='sent-message'>" + item[0].msg + "</p>" + "<p class='sent-message time'>" + time + "</p>" + "</div>" + "</div>" + 
 			"</div>";
 		}
 		
+		// Append the messages to chat holder 
 		$('.holder').append(fit);
-		
 
 	});
-	$('.holder').scrollTop(100000000000);
 
 });
