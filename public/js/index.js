@@ -70,10 +70,3 @@ $(document).ready(function(){
 	});
 
 });
-
-
-console.log("Hello geeks, welcome to GDG 2017");
-
-console.log("I am blocking the last line from executing");
-
-console.log("I am the last block on the stack");
